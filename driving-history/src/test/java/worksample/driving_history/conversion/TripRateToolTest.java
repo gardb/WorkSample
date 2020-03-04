@@ -10,6 +10,8 @@ import junit.framework.Assert;
 public class TripRateToolTest {
 	
 	private TripRateTool tripRateTool;
+	private BigDecimal rate;
+	private BigDecimal assertion;
 	
 	@Before
 	public void setup() {
@@ -18,9 +20,18 @@ public class TripRateToolTest {
 	
 	@Test
 	public void testOneMileInOneHour() {
-		BigDecimal rate = tripRateTool.calculateTripRate("1.0", new BigDecimal(60.00));
+		rate = tripRateTool.calculateTripRate(new BigDecimal(1), new BigDecimal(60.00));
 		
-		BigDecimal assertion = new BigDecimal("1");
+		assertion = new BigDecimal("1");
+		
+		Assert.assertEquals(assertion, rate);
+	}
+	
+	@Test
+	public void testThirtyFourMilesInOneHour() {
+		rate = tripRateTool.calculateTripRate(new BigDecimal(42), new BigDecimal(1.25));
+		
+		assertion = new BigDecimal(34);
 		
 		Assert.assertEquals(assertion, rate);
 	}
