@@ -22,7 +22,7 @@ public class TripTimeToolTest {
 		
 		BigDecimal assertion = new BigDecimal("1.00");
 		
-		Assert.assertEquals(difference, assertion);
+		Assert.assertEquals(assertion, difference);
 	}
 	
 	@Test
@@ -31,7 +31,7 @@ public class TripTimeToolTest {
 		
 		BigDecimal assertion = new BigDecimal("0.25");
 		
-		Assert.assertEquals(difference, assertion);
+		Assert.assertEquals(assertion, difference);
 	}
 	
 
