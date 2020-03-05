@@ -13,7 +13,6 @@ public class DrivingHistoryCLI {
 	}
 	
 	public void run() {
-		while(true) {
 			String dataFilePath = menu.getDataFilePath();
 			
 			while(true) {
@@ -24,7 +23,6 @@ public class DrivingHistoryCLI {
 				break;
 			}
 		}
-	}
 
 	public static void main(String[] args) {
 		Menu menu = new Menu(System.in, System.out);
