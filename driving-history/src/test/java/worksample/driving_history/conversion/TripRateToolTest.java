@@ -20,7 +20,7 @@ public class TripRateToolTest {
 	
 	@Test
 	public void testOneMileInOneHour() {
-		rate = tripRateTool.calculateTripRate(new BigDecimal(1), new BigDecimal(60.00));
+		rate = tripRateTool.calculateTripRate(new BigDecimal(60.00), new BigDecimal(1));
 		
 		assertion = new BigDecimal("1");
 		
@@ -29,7 +29,7 @@ public class TripRateToolTest {
 	
 	@Test
 	public void testThirtyFourMilesInOneHour() {
-		rate = tripRateTool.calculateTripRate(new BigDecimal(42), new BigDecimal(1.25));
+		rate = tripRateTool.calculateTripRate(new BigDecimal(1.25), new BigDecimal(42));
 		
 		assertion = new BigDecimal(34);
 		
