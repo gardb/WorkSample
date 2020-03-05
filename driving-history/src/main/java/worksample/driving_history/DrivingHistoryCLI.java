@@ -1,5 +1,7 @@
 package worksample.driving_history;
 
+import worksample.driving_history.driverdata.filereader.HistoryReader;
+import worksample.driving_history.driverdata.filereader.TxtHistoryReader;
 import worksample.driving_history.view.Menu;
 
 public class DrivingHistoryCLI {
@@ -14,7 +16,13 @@ public class DrivingHistoryCLI {
 		while(true) {
 			String dataFilePath = menu.getDataFilePath();
 			
-			break;
+			while(true) {
+				HistoryReader reader = new TxtHistoryReader(dataFilePath);
+				
+				reader.read();
+				
+				break;
+			}
 		}
 	}
 

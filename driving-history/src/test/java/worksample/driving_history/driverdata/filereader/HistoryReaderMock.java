@@ -10,7 +10,7 @@ import worksample.driving_history.driverdata.Trip;
 public class HistoryReaderMock extends HistoryReader {
 	
 	@Override
-	public Map<Driver, Trip> read(){
+	public Map<String, Trip> read(){
 		return loadHistoryFromDelimitedLines(getHistoryMockLines(), "\\s");
 	}
 	

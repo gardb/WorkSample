@@ -27,7 +27,7 @@ public class Trip {
 		this.tripRate = tripRate;
 	}
 	
-	public void calculateTrip(String startTimeInput, String endTimeInput, String distanceInput) {
+	public Trip calculateTrip(String startTimeInput, String endTimeInput, String distanceInput) {
 		newTripTime = ttt.calculateTripHours(startTimeInput, endTimeInput);
 		newTripDistance = new BigDecimal(distanceInput);
 		newTripRate = trt.calculateTripRate(newTripTime, newTripDistance);
@@ -39,6 +39,10 @@ public class Trip {
 			this.tripDistance = tripDistance.add(newTripDistance);
 			this.tripRate = trt.calculateTripRate(tripTime, tripDistance);
 		}
+		
+		Trip trip = new Trip(tripTime, tripDistance, tripRate);
+		
+		return trip;
 	}
 	
 	@Override
