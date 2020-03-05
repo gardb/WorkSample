@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import worksample.driving_history.driverdata.Driver;
 import worksample.driving_history.driverdata.Trip;
 
 public class HistoryReaderMock extends HistoryReader {

@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import worksample.driving_history.driverdata.Driver;
 import worksample.driving_history.driverdata.Trip;
 
 public abstract class HistoryReader {
