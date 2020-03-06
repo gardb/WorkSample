@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import worksample.driving_history.driverdata.Driver;
 import worksample.driving_history.driverdata.Trip;
 import worksample.driving_history.exception.HistoryReadException;
 
@@ -18,7 +19,7 @@ public class TxtHistoryReader extends HistoryReader{
 		this.txtFilePath = historyFilePath;
 	}
 	
-	public Map<String, Trip> read() {
+	public Map<Driver, Trip> read() {
 		return loadHistoryFromDelimitedLines(getLinesFromTxtFile(), "\\s");
 	}
 	
