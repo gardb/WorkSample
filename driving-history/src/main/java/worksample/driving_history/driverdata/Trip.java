@@ -2,6 +2,7 @@ package worksample.driving_history.driverdata;
 
 import java.math.BigDecimal;
 
+import worksample.driving_history.conversion.TripDistanceTool;
 import worksample.driving_history.conversion.TripRateTool;
 import worksample.driving_history.conversion.TripTimeTool;
 
@@ -20,6 +21,7 @@ public class Trip {
 	
 	private TripRateTool trt = new TripRateTool();
 	private TripTimeTool ttt = new TripTimeTool();
+	private TripDistanceTool tdt = new TripDistanceTool();
 	
 	private Trip trip;
 	
@@ -31,7 +33,7 @@ public class Trip {
 	
 	public Trip calculateTrip(String startTimeInput, String endTimeInput, String distanceInput) {
 		newTripTime = ttt.calculateTripHours(startTimeInput, endTimeInput);
-		newTripDistance = new BigDecimal(distanceInput);
+		newTripDistance = tdt.calculateTripDistance(distanceInput);
 		newTripRate = trt.calculateTripRate(newTripTime, newTripDistance);
 		
 		if((newTripRate.compareTo(minTripRate) == 1) &&
