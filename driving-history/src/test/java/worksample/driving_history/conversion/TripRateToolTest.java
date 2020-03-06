@@ -9,18 +9,18 @@ import org.junit.Assert;
 
 public class TripRateToolTest {
 	
-	private TripRateTool tripRateTool;
 	private BigDecimal rate;
 	private BigDecimal assertion;
+	private TripRateTool trt;
 	
 	@Before
 	public void setup() {
-		tripRateTool = new TripRateTool();
+		trt = new TripRateTool();
 	}
 	
 	@Test
 	public void testOneMileInOneHour() {
-		rate = tripRateTool.calculateTripRate(new BigDecimal(60.00), new BigDecimal(1));
+		rate = trt.calculateTripRate(new BigDecimal(60.00), new BigDecimal(1));
 		
 		assertion = new BigDecimal("1");
 		
@@ -29,9 +29,36 @@ public class TripRateToolTest {
 	
 	@Test
 	public void testThirtyFourMilesInOneHour() {
-		rate = tripRateTool.calculateTripRate(new BigDecimal(1.25), new BigDecimal(42));
+		rate = trt.calculateTripRate(new BigDecimal(1.25), new BigDecimal(42));
 		
 		assertion = new BigDecimal(34);
+		
+		Assert.assertEquals(assertion, rate);
+	}
+	
+	@Test
+	public void testZeroMilesInZeroHours() {
+		rate = trt.calculateTripRate(new BigDecimal(0), new BigDecimal(0));
+		
+		assertion = new BigDecimal(0);
+		
+		Assert.assertEquals(assertion, rate);
+	}
+	
+	@Test
+	public void testZerMilesInThreeHours() {
+		rate = trt.calculateTripRate(new BigDecimal(3), new BigDecimal(0));
+		
+		assertion = new BigDecimal(0);
+		
+		Assert.assertEquals(assertion, rate);
+	}
+	
+	@Test
+	public void testThreeMilesInZeroHours() {
+		rate = trt.calculateTripRate(new BigDecimal(0), new BigDecimal(3));
+		
+		assertion = new BigDecimal(0);
 		
 		Assert.assertEquals(assertion, rate);
 	}

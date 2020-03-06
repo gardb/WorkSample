@@ -6,17 +6,21 @@ import worksample.driving_history.view.Menu;
 
 public class DrivingHistoryCLI {
 	private Menu menu;
+	private HistoryReader reader;
+	private String dataFilePath;
 
 	public DrivingHistoryCLI(Menu menu) {
 		this.menu = menu;
 	}
 
 	public void run() {
-		String dataFilePath = menu.getDataFilePath();
+		dataFilePath = menu.getDataFilePath();
 
-		HistoryReader reader = new TxtHistoryReader(dataFilePath);
+		reader = new TxtHistoryReader(dataFilePath);
 
 		reader.read();
+		reader.printErrorReport();
+		reader.printHistoryReport();
 	}
 
 	public static void main(String[] args) {

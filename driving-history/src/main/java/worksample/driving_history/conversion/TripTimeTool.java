@@ -7,30 +7,64 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class TripTimeTool {
-	
+
 	private DateTimeFormatter fmt;
 	private LocalTime startTime;
 	private LocalTime endTime;
 	private Duration duration;
-	private BigDecimal minutesPerHour;
+	private final BigDecimal minutesPerHour = new BigDecimal(60);
 	private BigDecimal tripMinutes;
 	private BigDecimal tripHours;
-	
+
 	public BigDecimal calculateTripHours(String startTimeInput, String endTimeInput) {
-		fmt = DateTimeFormatter.ofPattern("HH:mm");
-		
-		startTime = LocalTime.parse(startTimeInput, fmt);
-		endTime = LocalTime.parse(endTimeInput, fmt);
-		
-		duration = Duration.between(startTime, endTime);
-		
-		minutesPerHour = new BigDecimal(60);
-		
-		tripMinutes = BigDecimal.valueOf(Math.abs(duration.toMinutes()));
-		
-		tripHours = tripMinutes.divide(minutesPerHour, 2, RoundingMode.CEILING);
-		
+
+		startTime = tryParseTime(startTimeInput);
+		endTime = tryParseTime(endTimeInput);
+
+		duration = tryDurationBetween(startTime, endTime);
+
+		tripMinutes = tryValueOfMinutes(duration);
+
+		tripHours = tryGetTripHours(tripMinutes, minutesPerHour);
+
 		return tripHours;
+	}
+
+	private LocalTime tryParseTime(String timeInput) {
+		try {
+			fmt = DateTimeFormatter.ofPattern("HH:mm");
+			return LocalTime.parse(timeInput, fmt);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	private Duration tryDurationBetween(LocalTime startTime, LocalTime endTime) {
+		try {
+			if (endTime.isBefore(startTime)) {
+				return null;
+			} else {
+				return Duration.between(startTime, endTime);
+			}
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	private BigDecimal tryValueOfMinutes(Duration duration) {
+		try {
+			return BigDecimal.valueOf(Math.abs(duration.toMinutes()));
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	private BigDecimal tryGetTripHours(BigDecimal tripMinutes, BigDecimal minutesPerHour) {
+		try {
+			return tripMinutes.divide(minutesPerHour, 2, RoundingMode.CEILING);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }

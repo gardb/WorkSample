@@ -15,6 +15,8 @@ public class TxtHistoryReader extends HistoryReader{
 	
 	private String txtFilePath;
 	
+	private File inputFile;
+	
 	public TxtHistoryReader(String historyFilePath) {
 		this.txtFilePath = historyFilePath;
 	}
@@ -26,7 +28,7 @@ public class TxtHistoryReader extends HistoryReader{
 	private List<String> getLinesFromTxtFile(){
 		List<String> lines = new ArrayList<String>();
 		
-		File inputFile = new File(txtFilePath);
+		inputFile = new File(txtFilePath);
 		
 		if (!inputFile.isFile()) {
 			throw new HistoryReadException(txtFilePath + " file not found.", this.getClass().getName());

@@ -15,11 +15,13 @@ public class Trip {
 	private BigDecimal newTripDistance;
 	private BigDecimal newTripRate;
 	
-	private BigDecimal minTripRate = new BigDecimal(5);
-	private BigDecimal maxTripRate = new BigDecimal(100);
+	private final BigDecimal minTripRate = new BigDecimal(5);
+	private final BigDecimal maxTripRate = new BigDecimal(100);
 	
 	private TripRateTool trt = new TripRateTool();
 	private TripTimeTool ttt = new TripTimeTool();
+	
+	private Trip trip;
 	
 	public Trip(BigDecimal tripTime, BigDecimal tripDistance, BigDecimal tripRate) {
 		this.tripTime = tripTime;
@@ -40,7 +42,7 @@ public class Trip {
 			this.tripRate = trt.calculateTripRate(tripTime, tripDistance);
 		}
 		
-		Trip trip = new Trip(tripTime, tripDistance, tripRate);
+		trip = new Trip(tripTime, tripDistance, tripRate);
 		
 		return trip;
 	}
