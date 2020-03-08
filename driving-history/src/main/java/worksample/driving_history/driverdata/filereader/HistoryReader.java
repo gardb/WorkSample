@@ -29,6 +29,7 @@ public abstract class HistoryReader {
 
 	private String INVALID_DATA = "Invalid data on line: ";
 	private String DUPLICATE_DRIVER = "Duplicate new driver requested on line: ";
+	private String DRIVER_NOT_REGISTERED = "Trip received for unregistered driver on line: ";
 
 	protected Map<Driver, Trip> loadHistoryFromDelimitedLines(List<String> historyLines, String delimiter) {
 		Map<Driver, Trip> driverHistory = new LinkedHashMap<Driver, Trip>();
@@ -42,24 +43,28 @@ public abstract class HistoryReader {
 
 			try {
 				driverName = historyParts[1];
-			} catch (Exception e) {
-				setErrorReport(INVALID_DATA + lineNumber);
-			}
 
-			if (historyParts[0].contentEquals(newDriver) && !driverHistory.containsKey(new Driver(driverName))) {
-				driverHistory.put(new Driver(driverName), new Trip(zero, zero, zero));
-			} else if (historyParts[0].contentEquals(newDriver) && driverHistory.containsKey(new Driver(driverName))) {
-				setErrorReport(DUPLICATE_DRIVER + lineNumber);
-			}
-
-			else if (historyParts[0].contentEquals(newTrip)) {
-				try {
+				if (historyParts[0].contentEquals(newDriver) 
+						&& !driverHistory.containsKey(new Driver(driverName))) {
+					driverHistory.put(new Driver(driverName), new Trip(zero, zero, zero));
+				} 
+				else if (historyParts[0].contentEquals(newDriver)
+						&& driverHistory.containsKey(new Driver(driverName))) {
+					setErrorReport(DUPLICATE_DRIVER + lineNumber);
+				} 
+				else if ((historyParts[0].contentEquals(newTrip))
+						&& !driverHistory.containsKey(new Driver(driverName))) {
+					setErrorReport(DRIVER_NOT_REGISTERED + lineNumber);
+				} 
+				else if (historyParts[0].contentEquals(newTrip)) {
 					driverHistory.put(new Driver(driverName), driverHistory.get(new Driver(driverName))
 							.calculateTrip(historyParts[2], historyParts[3], historyParts[4]));
-				} catch (Exception e) {
+				} 
+				else {
 					setErrorReport(INVALID_DATA + lineNumber);
 				}
-			} else {
+			} 
+			catch (Exception e) {
 				setErrorReport(INVALID_DATA + lineNumber);
 			}
 		}

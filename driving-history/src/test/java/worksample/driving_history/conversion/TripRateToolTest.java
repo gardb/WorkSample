@@ -71,4 +71,5 @@ public class TripRateToolTest {
 		
 		Assert.assertEquals(assertion, rate);
 	}
+
 }
