@@ -11,3 +11,8 @@ Driver Dan
 Trip Bob 00:00 01:00 25
 Driver Jane
 Trip Jane 02:00 00:00 50
+Driver
+Trip
+Trip Jane
+Trip Jane 00:00 01:00 25
+Trip Jane 00:00 01:00 -25
