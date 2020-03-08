@@ -9,27 +9,56 @@ import org.junit.Assert;
 
 public class TripTimeToolTest {
 	
-	private TripTimeTool tripTimeTool;
+	private TripTimeTool ttt;
+	private BigDecimal difference;
+	private BigDecimal assertion;
 	
 	@Before
 	public void setup() {
-		tripTimeTool = new TripTimeTool();
+		ttt = new TripTimeTool();
 	}
 	
 	@Test
 	public void testTotalHoursIsOne() {
-		BigDecimal difference = tripTimeTool.calculateTripHours("00:00", "01:00");
+		difference = ttt.calculateTripHours("00:00", "01:00");
 		
-		BigDecimal assertion = new BigDecimal("1.00");
+		assertion = new BigDecimal("1.00");
 		
 		Assert.assertEquals(assertion, difference);
 	}
 	
 	@Test
 	public void testTotalHoursIsOneQuarter() {
-		BigDecimal difference = tripTimeTool.calculateTripHours("00:00", "00:15");
+		difference = ttt.calculateTripHours("00:00", "00:15");
 		
-		BigDecimal assertion = new BigDecimal("0.25");
+		assertion = new BigDecimal("0.25");
+		
+		Assert.assertEquals(assertion, difference);
+	}
+	
+	@Test
+	public void testTotalHoursIsZero() {
+		difference = ttt.calculateTripHours("00:00", "00:00");
+		
+		assertion = new BigDecimal("0.00");
+		
+		Assert.assertEquals(assertion, difference);
+	}
+	
+	@Test
+	public void testRandomStringReturnsNull() {
+		difference = ttt.calculateTripHours("Hello", "world");
+		
+		assertion = null;
+		
+		Assert.assertEquals(assertion, difference);
+	}
+	
+	@Test
+	public void testStartTimeAfterEndTimeReturnsNull() {
+		difference = ttt.calculateTripHours("01:00", "00:00");
+		
+		assertion = null;
 		
 		Assert.assertEquals(assertion, difference);
 	}
