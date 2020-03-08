@@ -24,7 +24,6 @@ public class TripTest {
 	private String tripThreeEnd;
 	private String tripThreeDistance;
 	
-	private String brokenTripData;
 	
 	String assertion;
 	
@@ -42,8 +41,6 @@ public class TripTest {
 		tripThreeStart = "00:00";
 		tripThreeEnd = "01:00";
 		tripThreeDistance = "100";
-		
-		brokenTripData = "Test";
 		
 	}
 	
@@ -74,16 +71,6 @@ public class TripTest {
 		
 		Assert.assertEquals(assertion, trip.toString());
 		
-	}
-	
-	@Test
-	public void brokenTripReturnsNoTrip() {
-		trip = new Trip(zero, zero, zero);
-		trip.calculateTrip(brokenTripData, brokenTripData, brokenTripData);
-		
-		assertion = ": 0 miles";
-		
-		Assert.assertEquals(assertion, trip.toString());
 	}
 
 }
