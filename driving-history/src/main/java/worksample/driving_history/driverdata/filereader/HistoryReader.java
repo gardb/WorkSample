@@ -44,27 +44,21 @@ public abstract class HistoryReader {
 			try {
 				driverName = historyParts[1];
 
-				if (historyParts[0].contentEquals(newDriver) 
-						&& !driverHistory.containsKey(new Driver(driverName))) {
+				if (historyParts[0].contentEquals(newDriver) && !driverHistory.containsKey(new Driver(driverName))) {
 					driverHistory.put(new Driver(driverName), new Trip(zero, zero, zero));
-				} 
-				else if (historyParts[0].contentEquals(newDriver)
+				} else if (historyParts[0].contentEquals(newDriver)
 						&& driverHistory.containsKey(new Driver(driverName))) {
 					setErrorReport(DUPLICATE_DRIVER + lineNumber);
-				} 
-				else if ((historyParts[0].contentEquals(newTrip))
+				} else if ((historyParts[0].contentEquals(newTrip))
 						&& !driverHistory.containsKey(new Driver(driverName))) {
 					setErrorReport(DRIVER_NOT_REGISTERED + lineNumber);
-				} 
-				else if (historyParts[0].contentEquals(newTrip)) {
+				} else if (historyParts[0].contentEquals(newTrip)) {
 					driverHistory.put(new Driver(driverName), driverHistory.get(new Driver(driverName))
 							.calculateTrip(historyParts[2], historyParts[3], historyParts[4]));
-				} 
-				else {
+				} else {
 					setErrorReport(INVALID_DATA + lineNumber);
 				}
-			} 
-			catch (Exception e) {
+			} catch (Exception e) {
 				setErrorReport(INVALID_DATA + lineNumber);
 			}
 		}
@@ -87,9 +81,11 @@ public abstract class HistoryReader {
 		errorReport.add(errorData);
 	}
 
-	public void printErrorReport() {
-		for (String errors : errorReport) {
-			System.out.println(errors);
+	public void printErrorReport(String errorRequest) {
+		if (errorRequest.toUpperCase().contains("Y")) {
+			for (String errors : errorReport) {
+				System.out.println(errors);
+			}
 		}
 	}
 

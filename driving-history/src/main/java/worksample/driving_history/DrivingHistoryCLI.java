@@ -2,25 +2,34 @@ package worksample.driving_history;
 
 import worksample.driving_history.driverdata.filereader.HistoryReader;
 import worksample.driving_history.driverdata.filereader.TxtHistoryReader;
+import worksample.driving_history.exception.HistoryReadException;
 import worksample.driving_history.view.Menu;
 
 public class DrivingHistoryCLI {
 	private Menu menu;
 	private HistoryReader reader;
 	private String dataFilePath;
+	private String errorReport;
 
 	public DrivingHistoryCLI(Menu menu) {
 		this.menu = menu;
 	}
 
 	public void run() {
-		dataFilePath = menu.getDataFilePath();
+		while (true) {
+			dataFilePath = menu.getDataFilePath();
+			errorReport = menu.getErrorReport();
 
-		reader = new TxtHistoryReader(dataFilePath);
+			try {
+				reader = new TxtHistoryReader(dataFilePath);
 
-		reader.read();
-		reader.printErrorReport();
-		reader.printHistoryReport();
+				reader.read();
+				reader.printErrorReport(errorReport);
+				reader.printHistoryReport();
+			} catch (HistoryReadException e) {
+				menu.fileNotFound();
+			}
+		}
 	}
 
 	public static void main(String[] args) {
