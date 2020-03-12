@@ -3,7 +3,7 @@
 
 ## About
 
-A CLI tool to read a list of driver's trips input by a .txt file, and output total distance driven and average rate per driver.
+A CLI tool to read a list of Drivers and Trips input by a .txt file, and output total distance driven and average rate per Driver.
 
 Example input:
 
@@ -81,28 +81,28 @@ Tests were written using JUnit, and can be found in the src/test package. Using 
 Once the tool is running, a path to the file location to be read is requested. Optionally, you may choose the run an error report to detect and report any invalid data lines.
 
 The tool will read the text file, and store each line into a String list.
-It will then read loop through the list. At each index, it will parse each part that is separated by white space, into a String array.
+It will then loop through the list. At each index, it will parse each part that is separated by white space, into a String array.
 
-If index [0] in the array is equal to "Driver", the tool will create a new Driver object, with index [1] of the array being the driver's name. The Driver is then added to a Hash Map as the key, and a value of a new Trip is created. Trip data is defined as a driver's total time, total distance, and average rate. If there is a duplicate driver requested, an error will be added, and continue to read the rest of the data in the list.
+If index [0] in the array is equal to "Driver", the tool will create a new Driver object, with index [1] of the array being the Driver's name. The Driver is then added to a Hash Map as the key, and a value of a new Trip is created. Trip data is defined as a Driver's total time, total distance, and average rate. If there is a duplicate Driver requested, an error will be added, and continue to read the rest of the data in the list.
 
-If index [0] in the array is equal to "Trip", the tool will read index [1] to access the driver's name, and check that this driver has already been registered in the map. If the driver has not been registered, an error will be added, and continue to read the rest of the data in the list. If the driver is registered, the tool will run "calculateTrip" on the remaining parts of the array, and add the resulting total to the key driver's value.
+If index [0] in the array is equal to "Trip", the tool will read index [1] to access the Driver's name, and check that this Driver has already been registered in the map. If the Driver has not been registered, an error will be added, and continue to read the rest of the data in the list. If the Driver is registered, the tool will run "calculateTrip" on the remaining parts of the array, and add the resulting total to the key Driver's value.
 
 Calculate Trip expects 3 values: Trip Start Time, Trip End Time, and Trip Distance. Trip Start Time and Trip End Time combine to make Trip Hours.
 
 Calculate Trip is a combination of 3 methods:
 
 calculateTripHours (TripTimeTool) which parses the String input Start and End times, and returns total hours in BigDecimal format.
-This total is then added to the trip time values that are already present.
+This total is then added to the Trip time values that are already present.
 
 calculateTripDistance (TripDistanceTool) parses the String distance and returns a BigDecimal.
-This total is then added to the trip distance values that are already present.
+This total is then added to the Trip distance values that are already present.
 
-calculateTripRate (TripRateTool) divides the total trip distance by the total trip hours.
-If the average rate of the new trip to be added is less than 5 mph or greater than 100 mph, the trip will not be added to the trip data.
+calculateTripRate (TripRateTool) divides the total Trip distance by the total Trip hours.
+If the average rate of the new Trip to be added is less than 5 mph or greater than 100 mph, the Trip will not be added to the Trip data.
 
-The new trip data is returned to the map.
+The new Trip data is returned to the map.
 
 After all data has been read, the map is looped to print the key/value pairs.
 
-If the option to print an error report was selected, the tool will loop through the list of errors and print each one, prior to the trip data list.
+If the option to print an error report was selected, the tool will loop through the list of errors and print each one, prior to the Trip data list.
 
