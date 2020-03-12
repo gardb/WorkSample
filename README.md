@@ -27,8 +27,8 @@ JUnit 4.12 (For Testing Only)
 
 As this is a Java application, it will first need to be compiled. After cloning or downloading this repository, run Terminal or Console, and change directory to the following path from the root of the project.
 
-```
-WorkSample/driving-history/src/main/java/worksample/driving_history
+```Bash
+cd WorkSample/driving-history/src/main/java/worksample/driving_history
 ```
 
 Execute the following command:
@@ -81,11 +81,11 @@ Tests were written using JUnit, and can be found in the src/test package. Using 
 Once the tool is running, a path to the file location to be read is requested. Optionally, you may choose the run an error report to detect and report any invalid data lines.
 
 The tool will read the text file, and store each line into a String list.
-It will then read loop through the list. At each index, it will parse each part that is seperated by white space, into a String array.
+It will then read loop through the list. At each index, it will parse each part that is separated by white space, into a String array.
 
 If index [0] in the array is equal to "Driver", the tool will create a new Driver object, with index [1] of the array being the driver's name. The Driver is then added to a Hash Map as the key, and a value of a new Trip is created. Trip data is defined as a driver's total time, total distance, and average rate. If there is a duplicate driver requested, an error will be added, and continue to read the rest of the data in the list.
 
-If index [0] in the array is equal to "Trip", the tool will read index [1] to access the driver's name, and check that this driver has already been registered in the map. If the driver has not been registered, an error will be added, and contine to read the rest of the data in the list. If the driver is registered, the tool will run "calculateTrip" on the remaining parts of the array, and add the resulting total to the key driver's value.
+If index [0] in the array is equal to "Trip", the tool will read index [1] to access the driver's name, and check that this driver has already been registered in the map. If the driver has not been registered, an error will be added, and continue to read the rest of the data in the list. If the driver is registered, the tool will run "calculateTrip" on the remaining parts of the array, and add the resulting total to the key driver's value.
 
 Calculate Trip expects 3 values: Trip Start Time, Trip End Time, and Trip Distance. Trip Start Time and Trip End Time combine to make Trip Hours.
 
