@@ -20,14 +20,14 @@ public class Menu {
 	}
 	
 	public String getDataFilePath() {
-		out.println(DATA_FILE_PATH);
+		out.print(DATA_FILE_PATH);
 		out.flush();
 		
 		return in.nextLine();
 	}
 	
 	public String getErrorReport() {
-		out.println(GET_ERROR_REPORT);
+		out.print(GET_ERROR_REPORT);
 		out.flush();
 		
 		return in.nextLine();

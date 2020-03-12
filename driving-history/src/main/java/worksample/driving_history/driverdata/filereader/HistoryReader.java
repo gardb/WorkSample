@@ -83,16 +83,23 @@ public abstract class HistoryReader {
 
 	public void printErrorReport(String errorRequest) {
 		if (errorRequest.toUpperCase().contains("Y")) {
-			for (String errors : errorReport) {
-				System.out.println(errors);
+			System.out.println("-------------------------------------");
+			if (errorReport.isEmpty()) {
+				System.out.println("No errors to report.");
+			} else {
+				for (String errors : errorReport) {
+					System.out.println(errors);
+				}
 			}
 		}
 	}
 
 	public void printHistoryReport() {
+		System.out.println("-------------------------------------");
 		for (String history : historyReport) {
 			System.out.println(history);
 		}
+		System.out.println("-------------------------------------");
 	}
 
 }
