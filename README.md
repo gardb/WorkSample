@@ -109,7 +109,7 @@ If `index [0]` in the array is equal to `Trip`, the tool will read `index [1]` t
 
 After all data has been read and added to the `driverHistory` map, the map sets are put into a sortable LinkedList.
 
-HistorySorter is a custom comparing tool, that implements Javas `Comparator`. The compare tool expects the Driver/Trip pair, and compares the total distance values stored in each Trip object. `Collections.sort` is called on the LinkedList, using the custom compare tool, and orders the distances from greatest to least.
+HistorySorter is a custom comparing tool, that implements Java's `Comparator`. The compare tool expects the `Driver`/`Trip` pair, and compares the total distance values stored in each Trip object. `Collections.sort` is called on the LinkedList, using the custom compare tool, and orders the distances from greatest to least.
 
 Finally, the newly sorted list is looped to print the stored key value pair's String data.
 
