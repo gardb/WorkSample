@@ -2,10 +2,15 @@ package worksample.driving_history.driverdata.filereader;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import worksample.driving_history.conversion.HistorySorter;
 import worksample.driving_history.driverdata.Driver;
 import worksample.driving_history.driverdata.Trip;
 
@@ -13,8 +18,10 @@ public abstract class HistoryReader {
 
 	public abstract Map<Driver, Trip> read();
 
-	private List<String> historyReport = new ArrayList<String>();
+	private Map<Driver, Trip> driverHistory = new LinkedHashMap<Driver, Trip>();
 	private List<String> errorReport = new ArrayList<String>();
+	
+	private List<Entry<Driver, Trip>> historyReport;
 
 	private String newDriver = "Driver";
 	private String newTrip = "Trip";
@@ -32,7 +39,7 @@ public abstract class HistoryReader {
 	private String DRIVER_NOT_REGISTERED = "Trip received for unregistered driver on line: ";
 
 	protected Map<Driver, Trip> loadHistoryFromDelimitedLines(List<String> historyLines, String delimiter) {
-		Map<Driver, Trip> driverHistory = new LinkedHashMap<Driver, Trip>();
+		
 
 		lineNumber = 0;
 
@@ -63,18 +70,9 @@ public abstract class HistoryReader {
 			}
 		}
 
-		for (Map.Entry<Driver, Trip> entry : driverHistory.entrySet()) {
-			key = entry.getKey();
-			value = entry.getValue();
-
-			setHistoryReport(key.getName() + value);
-		}
+		
 
 		return driverHistory;
-	}
-
-	public void setHistoryReport(String historyData) {
-		historyReport.add(historyData);
 	}
 
 	private void setErrorReport(String errorData) {
@@ -95,9 +93,17 @@ public abstract class HistoryReader {
 	}
 
 	public void printHistoryReport() {
+		historyReport = new LinkedList<>(driverHistory.entrySet());
+		
+		Collections.sort(historyReport, new HistorySorter());
+		
 		System.out.println("-------------------------------------");
-		for (String history : historyReport) {
-			System.out.println(history);
+		
+		for(Entry<Driver, Trip> data : historyReport) {
+			key = data.getKey();
+			value = data.getValue();
+			
+			System.out.println(key.getName() + value);
 		}
 		System.out.println("-------------------------------------");
 	}

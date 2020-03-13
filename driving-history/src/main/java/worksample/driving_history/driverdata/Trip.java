@@ -57,6 +57,10 @@ public class Trip {
 			return ": " + tripDistance + " miles";
 		}
 	}
+
+	public BigDecimal getTripDistance() {
+		return tripDistance;
+	}
 	
 	
 

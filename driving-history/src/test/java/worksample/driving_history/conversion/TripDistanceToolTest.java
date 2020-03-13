@@ -28,10 +28,37 @@ public class TripDistanceToolTest {
 	}
 	
 	@Test
-	public void testNullMiles() {
+	public void testRandomStringReturnsNullMiles() {
 		distance = tdt.calculateTripDistance("Test");
 		
 		assertion = null;
+		
+		Assert.assertEquals(distance, assertion);
+	}
+	
+	@Test
+	public void testNegativeMilesReturnsNull() {
+		distance = tdt.calculateTripDistance("-50");
+		
+		assertion = null;
+		
+		Assert.assertEquals(distance, assertion);
+	}
+	
+	@Test
+	public void testFractionalNumberRoundedToNearestHalfUp() {
+		distance = tdt.calculateTripDistance("5.5");
+		
+		assertion = new BigDecimal(6);
+		
+		Assert.assertEquals(distance, assertion);
+	}
+	
+	@Test
+	public void testFractionalNumberRoundedToNearest() {
+		distance = tdt.calculateTripDistance("5.2");
+		
+		assertion = new BigDecimal(5);
 		
 		Assert.assertEquals(distance, assertion);
 	}

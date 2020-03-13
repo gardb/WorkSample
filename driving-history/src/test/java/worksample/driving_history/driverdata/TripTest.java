@@ -11,7 +11,6 @@ import org.junit.Test;
 public class TripTest {
 	
 	private Trip trip;
-	private BigDecimal zero;
 	private BigDecimal totalTime;
 	private BigDecimal totalDistance;
 	private BigDecimal totalRate;
@@ -32,7 +31,6 @@ public class TripTest {
 		totalTime = new BigDecimal(1.25);
 		totalDistance = new BigDecimal(42);
 		totalRate = new BigDecimal(34);
-		zero = new BigDecimal(0);
 		
 		tripTwoStart = "00:00";
 		tripTwoEnd = "01:00";
