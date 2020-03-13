@@ -80,12 +80,11 @@ Tests were written using JUnit, and can be found in the src/test package. Using 
 
 ## Rundown
 
-Once the tool is running, a path to the file location to be read is requested. Optionally, you may choose the run an error report to detect and report any invalid data lines.
+Once the tool is running, a path to the `.txt` file location to be read is requested from the `Menu` class, and passed on to the `TxtHistoryReader` class. Optionally, you may choose to print an error report to detect and review any invalid data lines.
 
-The tool will read the `.txt` file, and store each line into a String List using Scanner.
-It will then loop through the list. At each index in the list, it will parse each part that is separated by white space, into a String array. The tool will read through the String array before going to the next line in the List.
+The tool will read the `.txt` file, and store each line into a String List using Scanner. Looping through the list; at each index, it will parse each part that is separated by white space, into a String array. The tool will read through the String array before going to the next line in the List.
 
-If `index [0]` in the array is equal to `Driver`, the tool will create a new `Driver` object, with `index [1]` of the array being the driver's name. The `Driver` object is then added to a HashMap as the key, and a value of a new `Trip` object is created. 
+If `index [0]` in the String array is equal to `Driver`, the tool will create a new `Driver` object, with `index [1]` of the array being the driver's name. The `Driver` object is then added to a HashMap as the key, and a value of a new `Trip` object is created. 
 
 The `Trip` data object is defined as 3 values: 
 - Total Time
@@ -94,7 +93,7 @@ The `Trip` data object is defined as 3 values:
 
 If there is a duplicate `Driver` requested, an error will be added, and continue to read the rest of the data in the list.
 
-The Driver class includes a custom `hashCode` function to allow the object to be accessible in the map by comparing an identical object. This allows for scalability, rather than storing the driver's name in the map as a String.
+The Driver class includes a custom `hashCode` function to allow the object to be accessible in the map by comparing an identical object (in this case, the String `name`). This allows for scalability (including additional driver details), rather than storing the driver's name as only a String in the map.
 
 If `index [0]` in the array is equal to `Trip`, the tool will read `index [1]` to access the driver's name, and check that this driver has already been registered in the map. If the driver has not been registered, an error will be added, and continue to read the rest of the data in the list. If the driver is registered, the tool will run `calculateTrip` on the remaining parts of the array, and add the resulting total to the key `Driver`'s value.
 
@@ -115,4 +114,6 @@ HistorySorter is a custom comparing tool, that implements Javas `Comparator`. Th
 Finally, the newly sorted list is looped to print the stored key value pair's String data.
 
 If the option to print an error report was selected, the tool will loop through the list of errors and print each one, prior to the Trip data list.
+
+Any data that is input via user or external file is wrapped in a try/catch, to prevent the program from crashing during use or when checking potenitally invalid data.
 
