@@ -13,15 +13,9 @@ public class HistoryReadException extends RuntimeException{
 	public HistoryReadException(Throwable rootException, String message, String source) {
 		super(message, rootException);
 		this.source = source;
-		System.out.println("File not found");
 	}
 	
 	public String getSource() {
 		return source;
 	}
-	
-	public String getErrorMessage() {
-		return "Failed to load history from " + source + " : " + super.getMessage();
-	}
-
 }

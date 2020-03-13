@@ -10,10 +10,6 @@ public class Driver {
 	public String getName() {
 		return this.name;
 	}
-	
-	public String getDriver(String driverName) {
-		return this.name;
-	}
 
 	@Override
 	public int hashCode() {

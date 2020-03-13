@@ -12,7 +12,7 @@ public class Menu {
 	
 	private static final String DATA_FILE_PATH = "Path to data file: ";
 	private static final String GET_ERROR_REPORT = "Print with error report? (Y/N): ";
-	private static final String FILE_NOT_FOUND = "File not found";
+	private static final String FILE_NOT_FOUND = "Readable file not found";
 	
 	public Menu(InputStream input, OutputStream output) {
 		this.out = new PrintWriter(output);
