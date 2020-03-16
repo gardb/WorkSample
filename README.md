@@ -125,14 +125,6 @@ Any data that is input via user or external file is wrapped in a try/catch, to p
 
 9. The newly sorted list is looped to print the stored key value pair's String data.
  - The driver Object includes `getName` that returns the String name.
- - Trip has a custom `toString` method:
-  - ```Java
-if (tripDistance.compareTo(BigDecimal.ZERO) > 0) {
-			return ": " + tripDistance + " miles @ " + tripRate + " mph";
-		} else {
-			return ": " + tripDistance + " miles";
-		}
-	}
-```
+ - Trip has a custom `toString` method that checks total distance to determine proper output.
 
 10. If the option to print an error report was selected, the tool will loop through the list of errors and print each one, prior to the Trip data list.
