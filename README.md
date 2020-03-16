@@ -38,7 +38,7 @@ Execute the following command:
 javac *.java view/*.java exception/*.java conversion/*.java driverdata/filereader/*.java driverdata/*.java
 ```
 
-To run the tool, from the `WorkSample/driving-history/src/main/java directory`, execute the following:
+To run the tool, from the `WorkSample/driving-history/src/main/java` directory, execute the following:
 
 ```Bash
 java worksample.driving_history.DrivingHistoryCLI
