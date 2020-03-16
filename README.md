@@ -18,6 +18,7 @@ Example output:
 ```
 
 ## Requirements
+
 ```
 JDK 11.0.6
 JUnit 4.12 (For Testing Only)
@@ -80,40 +81,58 @@ Tests were written using JUnit, and can be found in the src/test package. Using 
 
 ## Rundown
 
-Once the tool is running, a path to the `.txt` file location to be read is requested from the `Menu` class, and passed on to the `TxtHistoryReader` class. Optionally, you may choose to print an error report to detect and review any invalid data lines.
+Any data that is input via user or external file is wrapped in a try/catch, to prevent the program from crashing during use or when checking potenitally invalid data. The majority of calculated methods have been designed to return null if data that does meet the criteria is provided, where the catch will look for these null pointers. The following is the basic order of operations:
 
-The tool will read the `.txt` file, and store each line into a String List using Scanner. Looping through the list; at each index, it will parse each part that is separated by white space, into a String array. The tool will read through the String array before going to the next line in the List.
+1. A path to the `.txt` file location to be read is requested from the `Menu` class, and passed on to the `TxtHistoryReader` class. 
 
-If `index [0]` in the String array is equal to `Driver`, the tool will create a new `Driver` object, with `index [1]` of the array being the driver's name. The `Driver` object is then added to a HashMap as the key, and a value of a new `Trip` object is created. 
+2. An option is given to print an error report along with the data.
 
-The `Trip` data object is defined as 3 values: 
-- Total Time
-- Total Distance
-- Average Rate
+3. The tool will read the `.txt` file, and store each line into a String List using Scanner. 
 
-If there is a duplicate `Driver` requested, an error will be added, and continue to read the rest of the data in the list.
+4. Looping through the list; at each index, each part that is separated by white space is parsed into a String array. 
+ - The tool will read through the String array and perform the calculations before going to the next line in the List.
 
-The Driver class includes a custom `hashCode` function to allow the object to be accessible in the map by comparing an identical object (in this case, the String `name`). This allows for scalability (including additional driver details), rather than storing the driver's name as only a String in the map.
+5. If `index [0]` in the String array is equal to `Driver`, the tool will create a new `Driver` object, with `index [1]` of the array being the driver's name. The `Driver` object is then added to a HashMap as the key, and a value of a new `Trip` object is created.
 
-If `index [0]` in the array is equal to `Trip`, the tool will read `index [1]` to access the driver's name, and check that this driver has already been registered in the map. If the driver has not been registered, an error will be added, and continue to read the rest of the data in the list. If the driver is registered, the tool will run `calculateTrip` on the remaining parts of the array, and add the resulting total to the key `Driver`'s value.
+ - The `Driver` object includes a custom `hashCode` function to allow the object to be accessible in the map by comparing an identical object (in this case, the String `name`).
 
-`calculateTrip` expects 3 values: 
-- Trip Start Time
-- Trip End Time
-- Trip Distance
+ - The `Trip` data object is defined as 3 parts: 
+  - Total Time (in hours)
+  - Total Distance (in miles)
+  - Average Rate (in miles per hour)
 
-`calculateTrip` is a combination of 3 methods:
-- `calculateTripHours` (TripTimeTool) which parses the String input Start and End times, and returns total hours in BigDecimal format. This total is then added to the Trip time values that are already present in the map.
-- `calculateTripDistance` (TripDistanceTool) parses the String distance and returns a BigDecimal. This total is then added to the Trip distance values that are already present.
-- `calculateTripRate` (TripRateTool) divides the total Trip distance by the total Trip hours. If the average rate of the new Trip to be added is less than 5 mph or greater than 100 mph, the Trip will not be added to the Trip data.
+ - If there is a duplicate `Driver` requested, an error will be added, and continue to read the rest of the data in the list.
 
-After all data has been read and added to the `driverHistory` map, the map sets are put into a sortable LinkedList.
+6. If `index [0]` in the array is equal to `Trip`, the tool will read `index [1]` to access the driver's name, and check that this driver has already been registered in the map. 
+ - If the driver has not been registered, an error will be added, and continue to read the rest of the data in the list. 
 
-HistorySorter is a custom comparing tool, that implements Java's `Comparator`. The compare tool expects the `Driver`/`Trip` pair, and compares the total distance values stored in each Trip object. `Collections.sort` is called on the LinkedList, using the custom compare tool, and orders the distances from greatest to least.
+ - If the driver is registered, the tool will run `calculateTrip` on the remaining parts of the array, and add the resulting total to the key `Driver`'s value.
 
-Finally, the newly sorted list is looped to print the stored key value pair's String data.
+ - `calculateTrip` expects 3 values: 
+  - Trip Start Time
+  - Trip End Time
+  - Trip Distance
 
-If the option to print an error report was selected, the tool will loop through the list of errors and print each one, prior to the Trip data list.
+ - `calculateTrip` is a combination of 3 methods:
+  - `calculateTripHours` (TripTimeTool) which parses the String input Start and End times, and returns total hours in BigDecimal format. This total is then added to the time values that are already present in the `Driver`/ `Trip` map.
+  - `calculateTripDistance` (TripDistanceTool) parses the String distance and returns a BigDecimal. This total is then added to the `Trip` distance values that are already present.
+  - `calculateTripRate` (TripRateTool) divides the total `Trip` distance by the total `Trip` hours. If the average rate of the new `Trip` to be added is less than 5 mph or greater than 100 mph, this `Trip` will not be added to the `Trip` data.
 
-Any data that is input via user or external file is wrapped in a try/catch, to prevent the program from crashing during use or when checking potenitally invalid data.
+7. After all data has been read and added to the `driverHistory` map, the map sets are put into a sortable LinkedList.
 
+8. `HistorySorter` is a custom comparing tool, that implements Java's `Comparator`. The compare tool expects the `Driver`/`Trip` pair, and compares the total `Trip Distance` values stored in each `Trip` object.
+ - `Collections.sort` is called on the LinkedList, using the custom compare tool, and orders the list by `Trip Distance` from greatest to least.
+
+9. The newly sorted list is looped to print the stored key value pair's String data.
+ - The driver Object includes `getName` that returns the String name.
+ - Trip has a custom `toString` method:
+  - ```Java
+if (tripDistance.compareTo(BigDecimal.ZERO) > 0) {
+			return ": " + tripDistance + " miles @ " + tripRate + " mph";
+		} else {
+			return ": " + tripDistance + " miles";
+		}
+	}
+```
+
+10. If the option to print an error report was selected, the tool will loop through the list of errors and print each one, prior to the Trip data list.
