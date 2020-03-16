@@ -89,7 +89,8 @@ Any data that is input via user or external file is wrapped in a try/catch, to p
 
 3. The tool will read the `.txt` file, and store each line into a String List using Scanner. 
 
-4. Looping through the list; at each index, each part that is separated by white space is parsed into a String array. 
+4. Looping through the list; at each index, each part that is separated by white space is parsed into a String array.
+
 	4a. The tool will read through the String array and perform the calculations before going to the next line in the List.
 
 5. If `index [0]` in the String array is equal to `Driver`, the tool will create a new `Driver` object, with `index [1]` of the array being the driver's name. The `Driver` object is then added to a HashMap as the key, and a value of a new `Trip` object is created.
@@ -97,9 +98,9 @@ Any data that is input via user or external file is wrapped in a try/catch, to p
 	5a. The `Driver` object includes a custom `hashCode` function to allow the object to be accessible in the map by comparing an identical object (in this case, the String `name`).
 
 	5b. The `Trip` data object is defined as 3 parts: 
-  		- Total Time (in hours)
-  		- Total Distance (in miles)
-  		- Average Rate (in miles per hour)
+  - Total Time (in hours)
+  - Total Distance (in miles)
+  - Average Rate (in miles per hour)
 
  	5c. If there is a duplicate `Driver` requested, an error will be added, and continue to read the rest of the data in the list.
 
@@ -110,9 +111,9 @@ Any data that is input via user or external file is wrapped in a try/catch, to p
 7. If the driver is registered, the tool will run `calculateTrip` on the remaining parts of the array, and add the resulting total to the key `Driver`'s value.
 
  	7a. `calculateTrip` expects 3 values: 
-		- Trip Start Time
-		- Trip End Time
-		- Trip Distance
+  - Trip Start Time
+  - Trip End Time
+  - Trip Distance
 
 8. `calculateTrip` is a combination of 3 methods:
 
