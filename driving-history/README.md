@@ -133,6 +133,16 @@ Any data that is input via user or external file is wrapped in a try/catch, to p
 
 	11a. The driver Object includes `getName` that returns the String name.
 
-	11b. Trip has a custom `toString` method that checks total distance to determine proper output.
+	11b. Trip has a custom `toString` method that checks total distance to determine proper output. The `toString` method follows (note that this is where the final calculations are rounded for asthetics, keeping decimals in tact in backend):
+
+```Java
+public String toString() {
+		if (tripDistance.compareTo(BigDecimal.ZERO) > 0) {
+			return ": " + tripDistance.setScale(0, RoundingMode.HALF_UP) + " miles @ " + tripRate.setScale(0, RoundingMode.HALF_UP) + " mph";
+		} else {
+			return ": " + tripDistance.setScale(0, RoundingMode.HALF_UP) + " miles";
+		}
+	}
+```
 
 10. If the option to print an error report was selected, the tool will loop through the list of errors and print each one, prior to the Trip data list.

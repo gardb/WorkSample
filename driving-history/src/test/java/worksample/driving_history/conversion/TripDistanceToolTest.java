@@ -22,9 +22,9 @@ public class TripDistanceToolTest {
 	public void testOneMile() {
 		distance = tdt.calculateTripDistance("1");
 		
-		assertion = new BigDecimal(1);
+		assertion = new BigDecimal("1.00");
 		
-		Assert.assertEquals(distance, assertion);
+		Assert.assertEquals(assertion, distance);
 	}
 	
 	@Test
@@ -33,7 +33,7 @@ public class TripDistanceToolTest {
 		
 		assertion = null;
 		
-		Assert.assertEquals(distance, assertion);
+		Assert.assertEquals(assertion, distance);
 	}
 	
 	@Test
@@ -42,14 +42,14 @@ public class TripDistanceToolTest {
 		
 		assertion = null;
 		
-		Assert.assertEquals(distance, assertion);
+		Assert.assertEquals(assertion, distance);
 	}
 	
 	@Test
 	public void testFractionalNumberRoundedToNearestHalfUp() {
 		distance = tdt.calculateTripDistance("5.5");
 		
-		assertion = new BigDecimal(6);
+		assertion = new BigDecimal("5.50");
 		
 		Assert.assertEquals(distance, assertion);
 	}
@@ -58,7 +58,7 @@ public class TripDistanceToolTest {
 	public void testFractionalNumberRoundedToNearest() {
 		distance = tdt.calculateTripDistance("5.2");
 		
-		assertion = new BigDecimal(5);
+		assertion = new BigDecimal("5.20");
 		
 		Assert.assertEquals(distance, assertion);
 	}

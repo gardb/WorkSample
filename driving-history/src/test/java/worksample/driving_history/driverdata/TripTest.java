@@ -11,6 +11,7 @@ import org.junit.Test;
 public class TripTest {
 	
 	private Trip trip;
+	private Trip trip2;
 	private BigDecimal totalTime;
 	private BigDecimal totalDistance;
 	private BigDecimal totalRate;
@@ -22,6 +23,10 @@ public class TripTest {
 	private String tripThreeStart;
 	private String tripThreeEnd;
 	private String tripThreeDistance;
+	
+	private BigDecimal newTripTime;
+	private BigDecimal newTripDistance;
+	private BigDecimal newTripRate;
 	
 	
 	String assertion;
@@ -39,6 +44,10 @@ public class TripTest {
 		tripThreeStart = "00:00";
 		tripThreeEnd = "01:00";
 		tripThreeDistance = "100";
+		
+		newTripTime = new BigDecimal("0.00");
+		newTripDistance = new BigDecimal("0.00");
+		newTripRate = new BigDecimal("0.00");
 		
 	}
 	
@@ -68,7 +77,15 @@ public class TripTest {
 		assertion = ": 42 miles @ 34 mph";
 		
 		Assert.assertEquals(assertion, trip.toString());
+	}
+	
+	@Test
+	public void newTripStringIsZeroed() {
+		trip2 = new Trip(newTripTime, newTripDistance, newTripRate);
 		
+		assertion = ": 0 miles";
+		
+		Assert.assertEquals(assertion, trip2.toString());
 	}
 
 }

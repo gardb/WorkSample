@@ -61,7 +61,7 @@ public class TripTimeTool {
 
 	private BigDecimal tryGetTripHours(BigDecimal tripMinutes, BigDecimal minutesPerHour) {
 		try {
-			return tripMinutes.divide(minutesPerHour, 2, RoundingMode.CEILING);
+			return tripMinutes.divide(minutesPerHour, 2, RoundingMode.HALF_UP);
 		} catch (Exception e) {
 			return null;
 		}

@@ -22,16 +22,16 @@ public class TripRateToolTest {
 	public void testOneMileInOneHour() {
 		rate = trt.calculateTripRate(new BigDecimal(1), new BigDecimal(1));
 		
-		assertion = new BigDecimal("1");
+		assertion = new BigDecimal("1.00");
 		
 		Assert.assertEquals(assertion, rate);
 	}
 	
 	@Test
-	public void testThirtyFourMilesInOneHour() {
+	public void testThirtyThreePointSixMilesInOneHour() {
 		rate = trt.calculateTripRate(new BigDecimal(1.25), new BigDecimal(42));
 		
-		assertion = new BigDecimal(34);
+		assertion = new BigDecimal("33.60");
 		
 		Assert.assertEquals(assertion, rate);
 	}
@@ -49,7 +49,7 @@ public class TripRateToolTest {
 	public void testZeroMilesInThreeHours() {
 		rate = trt.calculateTripRate(new BigDecimal(3), new BigDecimal(0));
 		
-		assertion = new BigDecimal(0);
+		assertion = new BigDecimal("0.00");
 		
 		Assert.assertEquals(assertion, rate);
 	}

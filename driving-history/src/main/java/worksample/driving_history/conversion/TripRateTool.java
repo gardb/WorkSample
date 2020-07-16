@@ -10,7 +10,7 @@ public class TripRateTool {
 	public BigDecimal calculateTripRate(BigDecimal tripTime, BigDecimal tripDistance) {
 
 		if ((tripTime.compareTo(BigDecimal.ZERO) > 0) && (tripDistance.compareTo(BigDecimal.ZERO) >= 0)) {
-			tripRate = tripDistance.divide(tripTime, 0, RoundingMode.HALF_UP);
+			tripRate = tripDistance.divide(tripTime, 2, RoundingMode.HALF_UP);
 		} else {
 			tripRate = null;
 		}

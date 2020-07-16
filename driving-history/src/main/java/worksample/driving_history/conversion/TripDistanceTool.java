@@ -10,7 +10,7 @@ public class TripDistanceTool {
 	public BigDecimal calculateTripDistance(String distanceInput) {
 		try {
 			tripDistance = new BigDecimal(distanceInput);
-			tripDistance = tripDistance.setScale(0, RoundingMode.HALF_UP);
+			tripDistance = tripDistance.setScale(2, RoundingMode.HALF_UP);
 			if (tripDistance.compareTo(BigDecimal.ZERO) >= 0) {
 				return tripDistance;
 			} else {

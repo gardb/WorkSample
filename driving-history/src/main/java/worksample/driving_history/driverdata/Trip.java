@@ -1,6 +1,7 @@
 package worksample.driving_history.driverdata;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import worksample.driving_history.conversion.TripDistanceTool;
 import worksample.driving_history.conversion.TripRateTool;
@@ -52,9 +53,9 @@ public class Trip {
 	@Override
 	public String toString() {
 		if (tripDistance.compareTo(BigDecimal.ZERO) > 0) {
-			return ": " + tripDistance + " miles @ " + tripRate + " mph";
+			return ": " + tripDistance.setScale(0, RoundingMode.HALF_UP) + " miles @ " + tripRate.setScale(0, RoundingMode.HALF_UP) + " mph";
 		} else {
-			return ": " + tripDistance + " miles";
+			return ": " + tripDistance.setScale(0, RoundingMode.HALF_UP) + " miles";
 		}
 	}
 
